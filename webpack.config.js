@@ -25,10 +25,8 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /pixi\.js/, loader: 'expose?PIXI' },
-      { test: /phaser-split\.js$/, loader: 'expose?Phaser' },
-      { test: /p2\.js/, loader: 'expose?p2' },
-      { test: /\.(t|ts|tsx)$/, loader: 'ts', exclude: '/node_modules/' },
+      { test: /\.(ts|tsx)$/, loader: 'ts', exclude: '/node_modules/' },
+      { test: /\.css\.js$/, loader: 'style!css!js-css', exclude: '/node_modules/' },
       { test: /\.(png|jpg|jpeg|gif)$/, loader: 'file?name=asset/[hash].[ext]' }
     ]
   },
@@ -36,12 +34,7 @@ module.exports = {
     fs: 'empty'
   },
   resolve: {
-    extensions: ['', '.js', '.ts', '.tsx'],
-    alias: {
-      'phaser': phaser,
-      'pixi': pixi,
-      'p2': p2,
-    }
+    extensions: ['', '.js', '.ts', '.tsx']
   },
   devtool: 'source-map'
 }

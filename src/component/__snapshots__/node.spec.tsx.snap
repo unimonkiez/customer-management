@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Node component has certain classes for diffrent props when isOpen is false 1`] = `
+<div
+  className="component-node closed"
+>
+  <div
+    className="component-node-arrow"
+  >
+    <Unknown />
+  </div>
+  <div
+    className="component-node-icon"
+  >
+    <Unknown />
+  </div>
+  <div
+    className="component-node-title"
+    data-unittest-id="title"
+  />
+</div>
+`;
+
+exports[`Node component has certain classes for diffrent props when isOpen is true 1`] = `
+<div
+  className="component-node open"
+>
+  <div
+    className="component-node-arrow"
+  >
+    <Unknown />
+  </div>
+  <div
+    className="component-node-icon"
+  >
+    <Unknown />
+  </div>
+  <div
+    className="component-node-title"
+    data-unittest-id="title"
+  />
+  <div
+    className="component-node-content"
+  >
+    contnet
+  </div>
+</div>
+`;

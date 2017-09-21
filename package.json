@@ -5,23 +5,46 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server -d --inline --hot --progress --no-info --port 9000",
-    "build": "rimraf ./dist && webpack -p"
+    "build": "rimraf ./dist && webpack -p",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "Yuval Saraf (unimonkiez@gmail.com)",
   "license": "MIT",
   "devDependencies": {
+    "@types/enzyme": "^2.8.8",
+    "@types/jest": "^20.0.8",
+    "@types/node": "^8.0.28",
     "@types/react": "^16.0.0",
     "@types/react-dom": "^15.5.2",
-    "expose-loader": "^0.7.3",
+    "@types/react-test-renderer": "^15.5.4",
+    "css-loader": "^0.28.7",
+    "enzyme": "^2.9.1",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
-    "phaser": "^2.6.2",
+    "jest": "^21.1.0",
+    "js-css-loader": "0.0.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
     "rimraf": "^2.5.4",
+    "style-loader": "^0.18.2",
+    "ts-jest": "^21.0.1",
     "ts-loader": "^0.8.2",
     "typescript": "^2.4.1",
     "webpack": "^1.15.0",
     "webpack-dev-server": "^1.16.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ]
   }
 }
