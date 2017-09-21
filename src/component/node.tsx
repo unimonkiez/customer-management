@@ -7,7 +7,8 @@ const { Component } = React;
 
 interface props {
     isOpen?: boolean,
-    title?: String
+    title?: String,
+    onOpen?: Function
 }
 
 export default class Node extends Component<props> {

@@ -1,33 +1,21 @@
 import * as React from 'react';
-import Node from './node';
+import { Provider } from 'react-redux';
+import configureStore from '../store/configure-store';
 
 const { Component } = React;
 
 export default class App extends Component {
+  store: any;
+  componentWillMount() {
+    this.store = configureStore();
+  }
   render() {
     return (
-      <div>
-        Hello world
-        <Node title="bbb">
-        <Node title="bbb">
-          123
-        </Node>
-        <Node title="bbb">
-          123
-        </Node>
-        <Node title="bbb">
-        <Node title="bbb">
-          123
-        </Node>
-        <Node title="bbb">
-          123
-        </Node>
-        <Node title="bbb">
-          123
-        </Node>
-        </Node>
-        </Node>
-      </div>
+      <Provider store={this.store}>
+        <div>
+          Hello world
+        </div>
+      </Provider>
     )
   }
 }
