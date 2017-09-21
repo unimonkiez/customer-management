@@ -1,34 +1,38 @@
-export const contants = {
-    OPEN: 0,
-    CLOSE: 1,
-    GET_CHILD_IDS: 2,
-    GET_CHILD_IDS_SUCCESS: 4,
-    GET_CHILD_IDS_FAILURE: 8
+import { ActionCreatorsMapObject } from 'redux';
+
+export const constants = {
+    OPEN: 'NODE_OPEN',
+    CLOSE: 'NODE_CLOSE',
+    GET_CHILD_IDS: 'NODE_GET_CHILD_IDS',
+    GET_CHILD_IDS_SUCCESS: 'NODE_GET_CHILD_IDS_SUCCESS',
+    GET_CHILD_IDS_FAILURE: 'NODE_GET_CHILD_IDS_FAILURE'
 };
 
-export const open = id => ({
-    type: contants.OPEN,
-    id
-});
+export default {
+    open: id => ({
+        type: constants.OPEN,
+        id
+    }),
 
-export const close = id => ({
-    type: contants.CLOSE,
-    id
-});
+    close: id => ({
+        type: constants.CLOSE,
+        id
+    }),
 
-export const getChildIds = id => ({
-    type: contants.GET_CHILD_IDS,
-    id
-});
+    getChildIds: id => ({
+        type: constants.GET_CHILD_IDS,
+        id
+    }),
 
-export const getChildIdsSuccess = (id, childIds) => ({
-    type: contants.GET_CHILD_IDS_SUCCESS,
-    id,
-    childIds
-});
+    getChildIdsSuccess: (id, childIds) => ({
+        type: constants.GET_CHILD_IDS_SUCCESS,
+        id,
+        childIds
+    }),
 
-export const getChildIdsFailure = (id, err) => ({
-    type: contants.GET_CHILD_IDS_FAILURE,
-    id,
-    err
-});
+    getChildIdsFailure: (id, err) => ({
+        type: constants.GET_CHILD_IDS_FAILURE,
+        id,
+        err
+    })
+}

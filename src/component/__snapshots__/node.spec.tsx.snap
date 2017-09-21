@@ -5,19 +5,24 @@ exports[`Node component has certain classes for diffrent props when isOpen is fa
   className="component-node closed"
 >
   <div
-    className="component-node-arrow"
+    className="component-node-upper"
+    onClick={[Function]}
   >
-    <Unknown />
+    <div
+      className="component-node-arrow"
+    >
+      <Unknown />
+    </div>
+    <div
+      className="component-node-icon"
+    >
+      <Unknown />
+    </div>
+    <div
+      className="component-node-title"
+      data-unittest-id="title"
+    />
   </div>
-  <div
-    className="component-node-icon"
-  >
-    <Unknown />
-  </div>
-  <div
-    className="component-node-title"
-    data-unittest-id="title"
-  />
 </div>
 `;
 
@@ -26,19 +31,24 @@ exports[`Node component has certain classes for diffrent props when isOpen is tr
   className="component-node open"
 >
   <div
-    className="component-node-arrow"
+    className="component-node-upper"
+    onClick={[Function]}
   >
-    <Unknown />
+    <div
+      className="component-node-arrow"
+    >
+      <Unknown />
+    </div>
+    <div
+      className="component-node-icon"
+    >
+      <Unknown />
+    </div>
+    <div
+      className="component-node-title"
+      data-unittest-id="title"
+    />
   </div>
-  <div
-    className="component-node-icon"
-  >
-    <Unknown />
-  </div>
-  <div
-    className="component-node-title"
-    data-unittest-id="title"
-  />
   <div
     className="component-node-content"
   >

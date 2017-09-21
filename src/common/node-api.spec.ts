@@ -38,10 +38,10 @@ describe('Node api', () => {
             restore();
         });
         test('returns object given by fetch directly', async () => {
-            const expectedRes = {};
+            const expectedRes = { root: {} };
             const { restore, mock: fetchMock } = mockFetch({ success: expectedRes });
             const actualRes = await NodeApi.getRoot();
-            expect(actualRes).toBe(expectedRes);
+            expect(actualRes).toBe(expectedRes.root);
             restore();
         });
     });
@@ -54,10 +54,10 @@ describe('Node api', () => {
             restore();
         });
         test('returns object given by fetch directly', async () => {
-            const expectedRes = {};
+            const expectedRes = { nodes: {} };
             const { restore, mock: fetchMock } = mockFetch({ success: expectedRes });
             const actualRes = await NodeApi.getListByParentId('');
-            expect(actualRes).toBe(expectedRes);
+            expect(actualRes).toBe(expectedRes.nodes);
             restore();
         });
     });

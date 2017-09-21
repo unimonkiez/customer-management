@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
+import Tree from './tree';
 import configureStore from '../store/configure-store';
 
 const { Component } = React;
@@ -12,9 +13,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={this.store}>
-        <div>
-          Hello world
-        </div>
+        <Tree />
       </Provider>
     )
   }

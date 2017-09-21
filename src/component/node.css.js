@@ -1,10 +1,9 @@
 module.exports = {
-    '.component-node': {
+    '.component-node-upper': {
         display: 'flex',
-        flexWrap: 'wrap',
         alignItems: 'center'
     },
-    '.component-node.open .component-node-arrow': {
+    '.component-node.open>*>.component-node-arrow': {
         transform: 'rotate(90deg)'
     },
     '.component-node-title': {
@@ -22,7 +21,6 @@ module.exports = {
         height: '16px'
     },
     '.component-node-content': {
-        flex: '0 0 100%',
         padding: '0 20px'
     },
 }

@@ -8,24 +8,33 @@ const { Component } = React;
 interface props {
     isOpen?: boolean,
     title?: String,
-    onOpen?: Function
+    onIsOpenChange?: Function
 }
 
 export default class Node extends Component<props> {
     static defaultProps = {
         isOpen: false
     };
-
+    
     render() {
         const { isOpen } = this.props;
         return (
             <div className={`component-node${isOpen ? ' open' : ' closed'}`}>
-                { this.renderArrow() }
-                { this.renderIcon() }
-                { this.renderTitle() }
+                { this.renderUpperSection() }
                 { this.renderContent() }
             </div>
         );
+    }
+    
+    private renderUpperSection() {
+        const { onIsOpenChange } = this.props;
+        return (
+            <div className="component-node-upper" onClick={() => this.handleOnClick()}>
+                {this.renderArrow()}
+                {this.renderIcon()}
+                {this.renderTitle()}
+            </div>
+        )
     }
     private renderArrow(): React.ReactNode {
         return (
@@ -35,7 +44,7 @@ export default class Node extends Component<props> {
         )
         
     }
-
+    
     private renderIcon(): React.ReactNode {
         return (
             <div className="component-node-icon">
@@ -43,10 +52,10 @@ export default class Node extends Component<props> {
             </div>
         )
     }
-
+    
     private renderContent(): React.ReactNode {
         const { isOpen, children } = this.props;
-
+        
         if (isOpen) {
             return (
                 <div className="component-node-content">
@@ -57,12 +66,18 @@ export default class Node extends Component<props> {
             return null;
         }
     }
-
+    
     private renderTitle() {
         const { title } = this.props;
-
+        
         return <div className="component-node-title" data-unittest-id="title">
             {title}
         </div>;
+    }
+    private handleOnClick() {
+        const { onIsOpenChange } = this.props;
+        if (onIsOpenChange) {
+            onIsOpenChange();
+        }
     }
 }
