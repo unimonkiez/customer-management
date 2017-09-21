@@ -29,7 +29,7 @@ export default class Node extends Component<props> {
     private renderUpperSection() {
         const { onIsOpenChange } = this.props;
         return (
-            <div className="component-node-upper" onClick={() => this.handleOnClick()}>
+            <div className="component-node-upper" onClick={() => this.handleOnClick()} data-unittest-id="upper-section">
                 {this.renderArrow()}
                 {this.renderIcon()}
                 {this.renderTitle()}

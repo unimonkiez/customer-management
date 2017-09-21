@@ -6,6 +6,7 @@ exports[`Node component has certain classes for diffrent props when isOpen is fa
 >
   <div
     className="component-node-upper"
+    data-unittest-id="upper-section"
     onClick={[Function]}
   >
     <div
@@ -32,6 +33,7 @@ exports[`Node component has certain classes for diffrent props when isOpen is tr
 >
   <div
     className="component-node-upper"
+    data-unittest-id="upper-section"
     onClick={[Function]}
   >
     <div

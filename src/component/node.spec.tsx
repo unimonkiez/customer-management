@@ -4,7 +4,8 @@ import { shallow } from 'enzyme';
 import * as ShallowRenderer from 'react-test-renderer/shallow';
 
 const domTestSelectors = {
-    title: '[data-unittest-id="title"]'
+    title: '[data-unittest-id="title"]',
+    upperSection: '[data-unittest-id="upper-section"]'
 };
 
 describe('Node component', () => {
@@ -46,6 +47,21 @@ describe('Node component', () => {
             </Node>
         );
         expect(node.find(`#${idMock}`).length).toBe(0);
+    });
+    test('clicking upper section will call onIsOpenChange', () => {
+        const cb = jest.fn();
+        const node = shallow(
+            <Node onIsOpenChange={cb} />
+        );
+        expect(cb).toHaveBeenCalledTimes(0);
+        node.find(domTestSelectors.upperSection).simulate('click');
+        expect(cb).toHaveBeenCalledTimes(1);
+    });
+    test('clicking upper section be ok even if onIsOpenChange isn\'t supplied', () => {
+        const node = shallow(
+            <Node />
+        );
+        node.find(domTestSelectors.upperSection).simulate('click');
     });
     describe('has certain classes for diffrent props', () => {
         const propsVariations = [
