@@ -2,39 +2,116 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Phaser webpack config
-var phaserModule = path.join(__dirname, '/node_modules/phaser/');
-var phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
-var pixi = path.join(phaserModule, 'build/custom/pixi.js');
-var p2 = path.join(phaserModule, 'build/custom/p2.js');
+const isDevServer = process.argv[1].indexOf('webpack-dev-server') !== -1;
 
 module.exports = {
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
+  },
   entry: './src/index',
   output: {
-    pathInfo: true,
     filename: '[name].bundle.js',
     path: path.resolve('./dist'),
     publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './src/index.html',
       inject: 'body',
-    }),
-    new webpack.NoErrorsPlugin(),
+    })
   ],
   module: {
     loaders: [
-      { test: /\.(ts|tsx)$/, loader: 'ts', exclude: '/node_modules/' },
-      { test: /\.css\.js$/, loader: 'style!css!js-css', exclude: '/node_modules/' },
-      { test: /\.(png|jpg|jpeg|gif)$/, loader: 'file?name=asset/[hash].[ext]' }
+      {
+        test: file => (file.match(/\.js$/) && (!file.match(/\.css\.js$/))),
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'stage-2'],
+              plugins: []
+                .concat(['transform-runtime'])
+            }
+          }
+        ]
+      },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'stage-2', 'react'],
+              plugins: []
+                .concat(['transform-runtime'])
+                .concat((isDevServer) ? ['react-hot-loader/babel'] : [])
+            }
+          }
+        ]
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader'
+          }
+        ]
+      },
+      {
+        test: /\.tsx$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: []
+                .concat((isDevServer) ? ['react-hot-loader/babel'] : [])
+            }
+          },
+          {
+            loader: 'ts-loader'
+          }
+        ]
+      },
+      {
+        test: /\.css\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css'
+          },
+          {
+            loader: 'js-css'
+          },
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'stage-2'],
+              plugins: []
+                .concat(['transform-runtime'])
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: './asset/[hash].[ext]'
+            }
+          }
+        ]
+      }
     ]
-  },
-  node: {
-    fs: 'empty'
-  },
-  resolve: {
-    extensions: ['', '.js', '.ts', '.tsx']
-  },
-  devtool: 'source-map'
-}
+  }
+};
