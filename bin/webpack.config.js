@@ -1,25 +1,29 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const isDevServer = process.argv[1].indexOf('webpack-dev-server') !== -1;
+
+const rootPath = path.resolve(__dirname, '..');
 
 module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
-  entry: './src/index',
+  entry: path.resolve(rootPath, 'src', 'index'),
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve('./dist'),
-    publicPath: '/'
+    path: path.resolve(rootPath, 'dist')
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(rootPath, 'src', 'index.html'),
       inject: 'body',
-    })
+    }),
+    new ProgressBarPlugin()
   ],
   module: {
     loaders: [
@@ -40,17 +44,22 @@ module.exports = {
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2015', 'stage-2', 'react'],
-              plugins: []
-                .concat(['transform-runtime'])
-                .concat((isDevServer) ? ['react-hot-loader/babel'] : [])
-            }
-          }
-        ]
+        use: []
+          .concat(isDevServer ? {
+            loader: 'react-hot-loader/webpack'
+          } : [])
+          .concat(
+            [
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['es2015', 'stage-2', 'react'],
+                  plugins: []
+                    .concat(['transform-runtime'])
+                }
+              }
+            ]
+          )
       },
       {
         test: /\.ts$/,
@@ -64,18 +73,17 @@ module.exports = {
       {
         test: /\.tsx$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              plugins: []
-                .concat((isDevServer) ? ['react-hot-loader/babel'] : [])
-            }
-          },
-          {
-            loader: 'ts-loader'
-          }
-        ]
+        use: []
+          .concat(isDevServer ? {
+            loader: 'react-hot-loader/webpack'
+          } : [])
+          .concat(
+            [
+              {
+                loader: 'ts-loader'
+              }
+            ]
+          )
       },
       {
         test: /\.css\.js$/,
@@ -85,10 +93,10 @@ module.exports = {
             loader: 'style-loader'
           },
           {
-            loader: 'css'
+            loader: 'css-loader'
           },
           {
-            loader: 'js-css'
+            loader: 'js-css-loader'
           },
           {
             loader: 'babel-loader',

@@ -4,10 +4,10 @@
   "description": "Starter boilerplate for an Phaser game",
   "main": "dist/index.js",
   "scripts": {
-    "start": "webpack-dev-server -d --inline --hot --progress --no-info --port 9000",
-    "build": "rimraf ./dist && webpack -p",
+    "start": "webpack-dev-server --config bin/webpack.config.js -d --inline --hot --progress --no-info --port 9000",
+    "build": "rimraf ./dist && webpack --config bin/webpack.config.js -p",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "npm test -- --watch"
   },
   "author": "Yuval Saraf (unimonkiez@gmail.com)",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "@types/react-redux": "^5.0.9",
     "@types/react-test-renderer": "^15.5.4",
     "@types/redux": "^3.6.0",
+    "babel-jest": "^21.0.2",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
@@ -34,6 +35,7 @@
     "inject-loader": "^3.0.1",
     "jest": "^21.1.0",
     "js-css-loader": "0.0.3",
+    "progress-bar-webpack-plugin": "^1.10.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7",
@@ -52,14 +54,15 @@
   },
   "jest": {
     "transform": {
+      "^.+\\.jsx?$": "<rootDir>/bin/jest-jsx-transform.js",
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "(\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "(\\.spec)\\.(ts|tsx|js|jsx)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
       "js",
-      "json"
+      "jsx"
     ]
   }
 }
