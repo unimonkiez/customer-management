@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditDriverDetails renders with some classes 1`] = `
+<div
+  className="edit-driver-details"
+>
+  <label>
+    <div>
+      Name
+      :
+    </div>
+    <input
+      data-unittest-id="name"
+      onChange={[Function]}
+      type="text"
+      value={undefined}
+    />
+  </label>
+  <label>
+    <div>
+      Phone
+      :
+    </div>
+    <input
+      data-unittest-id="phone"
+      onChange={[Function]}
+      type="text"
+      value={undefined}
+    />
+  </label>
+  <label>
+    <div>
+      Email
+      :
+    </div>
+    <input
+      data-unittest-id="email"
+      onChange={[Function]}
+      type="text"
+      value={undefined}
+    />
+  </label>
+</div>
+`;

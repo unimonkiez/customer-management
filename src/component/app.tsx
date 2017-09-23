@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from '../store/configure-store';
-import A from './a';
+import EditDriverDetails from './edit-driver-details';
 
 const { Component } = React;
 
@@ -14,8 +14,11 @@ export default class App extends Component {
     return (
       <Provider store={this.store}>
         <div>
-          hereeeeooooo WORRLD
-          <A />
+          <EditDriverDetails
+            name="unimonkiez"
+            email="unimonkiez@gmail.com"
+            phone="+972505555555"
+          />
         </div>
       </Provider>
     )
